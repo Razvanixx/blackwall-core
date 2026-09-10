@@ -9,8 +9,8 @@ The repository is a local scaffold until every blocking item is complete.
 - [x] Add a valid public contact route without exposing private credentials.
 - [ ] Review Apache-2.0, NOTICE, trademark, and contribution terms with appropriate counsel.
 - [x] Pin GitHub Actions to reviewed full commit SHAs.
-- [ ] Enable branch protection, dependency review, CodeQL, secret scanning, and push protection where available.
-- [ ] Run `npm run check` from a clean checkout on Windows and Linux.
+- [x] Enable branch protection, dependency review, CodeQL, secret scanning, and push protection where available.
+- [x] Run `npm run check` from a clean checkout on Windows and Linux.
 - [x] Run `npm run publication-check` and resolve every reported item.
 - [x] Review the complete Git history for secrets and personal paths.
 - [x] Confirm that no binaries, signatures, model weights, private endpoints, user data, or commercial code are present.
