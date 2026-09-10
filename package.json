@@ -1,0 +1,47 @@
+{
+  "name": "blackwall-core",
+  "version": "0.1.0",
+  "description": "Experimental default-deny policy and protocol foundation for AI-agent security.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./policy": "./src/policy/compiler.mjs",
+    "./protocol": "./src/protocol/broker.mjs"
+  },
+  "bin": {
+    "blackwall": "./src/cli/blackwall.mjs",
+    "blackwall-app": "./src/app/main.mjs"
+  },
+  "files": [
+    "src/",
+    "schemas/",
+    "docs/",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "ROADMAP.md",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
+    "TRADEMARKS.md"
+  ],
+  "scripts": {
+    "start": "node src/app/main.mjs",
+    "app": "node src/app/main.mjs --open",
+    "demo": "node src/cli/blackwall.mjs demo",
+    "test": "node --test",
+    "check": "node --check src/policy/compiler.mjs && node --check src/protocol/broker.mjs && node --check src/protocol/channel.mjs && node --test",
+    "publication-check": "node scripts/publication-check.mjs"
+  },
+  "keywords": [
+    "ai-security",
+    "agent-security",
+    "policy-engine",
+    "default-deny",
+    "sandbox"
+  ]
+}

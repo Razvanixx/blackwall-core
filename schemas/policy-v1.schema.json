@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blackwall.dev/schemas/policy-v1.schema.json",
+  "title": "Blackwall Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "policyId", "grants"],
+  "properties": {
+    "version": { "const": 1 },
+    "policyId": { "$ref": "#/$defs/identifier" },
+    "grants": {
+      "type": "array",
+      "maxItems": 256,
+      "items": { "$ref": "#/$defs/grant" }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,80}$"
+    },
+    "fileResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": { "path": { "type": "string", "maxLength": 1024 } }
+    },
+    "networkResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["host", "port", "protocol"],
+      "properties": {
+        "host": { "type": "string", "maxLength": 253 },
+        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "protocol": { "const": "tcp" }
+      }
+    },
+    "processResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "args"],
+      "properties": {
+        "path": { "type": "string", "maxLength": 1024 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "args": {
+          "type": "array",
+          "maxItems": 32,
+          "items": { "type": "string", "maxLength": 2048 }
+        }
+      }
+    },
+    "grant": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/grantBase",
+          "properties": {
+            "action": { "enum": ["file.read", "file.write"] },
+            "resource": { "$ref": "#/$defs/fileResource" }
+          }
+        },
+        {
+          "$ref": "#/$defs/grantBase",
+          "properties": {
+            "action": { "const": "network.connect" },
+            "resource": { "$ref": "#/$defs/networkResource" }
+          }
+        },
+        {
+          "$ref": "#/$defs/grantBase",
+          "properties": {
+            "action": { "const": "process.start" },
+            "resource": { "$ref": "#/$defs/processResource" }
+          }
+        }
+      ]
+    },
+    "grantBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "principal", "session", "action", "resource", "expiresAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifier" },
+        "principal": { "$ref": "#/$defs/identifier" },
+        "session": { "$ref": "#/$defs/identifier" },
+        "action": { "type": "string" },
+        "resource": { "type": "object" },
+        "expiresAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

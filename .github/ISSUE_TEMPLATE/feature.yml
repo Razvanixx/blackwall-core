@@ -1,0 +1,26 @@
+name: Feature proposal
+description: Propose a focused change to the public core.
+title: "[Proposal]: "
+labels: ["proposal"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the security or integration problem without prescribing an implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Security-boundary impact
+      description: Explain what becomes trusted, untrusted, allowed, or denied.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable, testable outcomes.
+    validations:
+      required: true

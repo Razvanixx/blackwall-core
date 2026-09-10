@@ -1,0 +1,4 @@
+{
+  "action": "file.read",
+  "resource": { "path": "C:\\AgentWork\\input.txt" }
+}

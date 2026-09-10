@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blackwall Core</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail" aria-label="Primary navigation">
+      <div class="brand-mark" aria-hidden="true">BW</div>
+      <nav>
+        <button class="nav-item active" type="button" data-view="overview">Overview</button>
+        <button class="nav-item" type="button" data-view="policy">Policy lab</button>
+        <button class="nav-item" type="button" data-view="audit">Audit</button>
+      </nav>
+      <div class="rail-status"><span class="pulse"></span> Local node</div>
+    </aside>
+
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow">AI ACTION CONTROL</p>
+          <h1>Blackwall <span>Core</span></h1>
+        </div>
+        <div class="level" title="Policy simulation; no operating-system enforcement">
+          <span>ENFORCEMENT</span><strong id="level">L0</strong>
+        </div>
+      </header>
+
+      <section id="overview" class="view active" aria-labelledby="overview-title">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">BOUNDARY STATUS</p>
+            <h2 id="overview-title">Every action needs an exact grant.</h2>
+            <p>Blackwall evaluates explicit capabilities before an AI agent is permitted to act. This build is a policy simulator and does not yet enforce operating-system boundaries.</p>
+          </div>
+          <div class="shield" aria-hidden="true"><div>BW</div></div>
+        </div>
+
+        <div class="metrics">
+          <article><span>ACTIVE SESSIONS</span><strong id="session-count">0</strong></article>
+          <article><span>AUDIT EVENTS</span><strong id="event-count">0</strong></article>
+          <article><span>MODE</span><strong class="small">DEFAULT DENY</strong></article>
+        </div>
+
+        <div class="notice">
+          <strong>Experimental boundary</strong>
+          <p>An L0 allow is a policy decision. It does not prove that an operation was safely executed.</p>
+        </div>
+      </section>
+
+      <section id="policy" class="view" aria-labelledby="policy-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">CONTROL PLANE</p><h2 id="policy-title">Policy lab</h2></div>
+          <button id="load-example" class="secondary" type="button">Reset example</button>
+        </div>
+        <div class="lab-grid">
+          <label>Policy JSON<textarea id="policy-input" spellcheck="false"></textarea></label>
+          <label>Requested action JSON<textarea id="request-input" spellcheck="false"></textarea></label>
+        </div>
+        <div class="actions">
+          <button id="evaluate" class="primary" type="button">Evaluate request</button>
+          <span id="run-state" role="status" aria-live="polite"></span>
+        </div>
+        <article id="decision" class="decision empty">
+          <p class="eyebrow">DECISION</p>
+          <h3>Waiting for a request</h3>
+          <p>Run the example to exercise an authenticated, replay-resistant policy session.</p>
+        </article>
+      </section>
+
+      <section id="audit" class="view" aria-labelledby="audit-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">LOCAL JOURNAL</p><h2 id="audit-title">Decision audit</h2></div>
+          <button id="refresh-audit" class="secondary" type="button">Refresh</button>
+        </div>
+        <p class="muted">The journal records metadata only. Resources, prompts, content, and capabilities are excluded.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Event</th><th>Principal</th><th>Session</th><th>Result</th></tr></thead>
+            <tbody id="audit-rows"><tr><td colspan="5">No events recorded.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

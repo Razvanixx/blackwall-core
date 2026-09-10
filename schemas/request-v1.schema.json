@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blackwall.dev/schemas/request-v1.schema.json",
+  "title": "Blackwall Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "sequence", "request"],
+  "properties": {
+    "version": { "const": 1 },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "resource"],
+      "properties": {
+        "action": {
+          "enum": ["file.read", "file.write", "process.start", "network.connect"]
+        },
+        "resource": { "type": "object" }
+      }
+    }
+  }
+}

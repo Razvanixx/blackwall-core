@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blackwall.dev/schemas/decision-v1.schema.json",
+  "title": "Blackwall Decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision", "code", "reason", "enforcementLevel"],
+  "properties": {
+    "decision": { "enum": ["allow", "deny"] },
+    "code": { "type": "string", "pattern": "^BW_[A-Z0-9_]+$" },
+    "reason": { "type": "string", "maxLength": 512 },
+    "enforcementLevel": { "enum": ["L0", "L1", "L2", "L3", "L4"] },
+    "policyId": { "type": "string" },
+    "grantId": { "type": "string" },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "nextSequence": { "type": "integer", "minimum": 1 },
+    "expectedSequence": { "type": "integer", "minimum": 1 }
+  }
+}

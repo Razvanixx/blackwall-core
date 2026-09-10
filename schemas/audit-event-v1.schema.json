@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blackwall.dev/schemas/audit-event-v1.schema.json",
+  "title": "Blackwall Audit Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sequence", "timestamp", "type", "principal", "session"],
+  "properties": {
+    "sequence": { "type": "integer", "minimum": 1 },
+    "timestamp": { "type": "integer", "minimum": 0 },
+    "type": {
+      "enum": ["session.created", "session.revoked", "request.allowed", "request.denied", "request.failed"]
+    },
+    "principal": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,80}$" },
+    "session": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,80}$" },
+    "decisionCode": { "type": "string" },
+    "action": { "type": "string" }
+  }
+}
