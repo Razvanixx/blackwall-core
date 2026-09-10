@@ -15,4 +15,4 @@ The repository is a local scaffold until every blocking item is complete.
 - [x] Review the complete Git history for secrets and personal paths.
 - [x] Confirm that no binaries, signatures, model weights, private endpoints, user data, or commercial code are present.
 - [x] Confirm every README claim against the current security boundary.
-- [ ] Publish as `v0.1.0-experimental`; do not publish production binaries.
+- [x] Publish as `v0.1.0-experimental`; do not publish production binaries.
